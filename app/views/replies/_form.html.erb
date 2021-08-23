@@ -1,0 +1,9 @@
+<%#= form_for [comment.article, comment, comment.build_reply ] do |form| %>
+<%= form_for [comment.article, comment, comment.replies.build ] do |form| %>
+  <p>
+    <%= form.text_area :body %>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>

@@ -1,0 +1,9 @@
+<% if user_signed_in? %>
+  <div><%= image_tag(current_user.profile.image, style:'width:100px; border-radius: 50%; margin-left: 500px') %></div>
+  <h5 style = "margin-left:470px">Welcome <%= current_user.profile.name %></h5> 
+  <div style = "margin-left:410px">
+    <%= link_to "Show Profile",profile_path(current_user.profile) %>&nbsp &nbsp
+    <%= link_to "Update Profile", edit_user_registration_path %>&nbsp &nbsp
+    <%= link_to "Logout", destroy_user_session_path, method: :delete %>&nbsp &nbsp
+  </div>
+<% end %>

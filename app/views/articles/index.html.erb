@@ -1,0 +1,29 @@
+<%= render "user" %>
+<%= render "form", article: @article %><br>
+<h1 class="posts">Posts</h1>
+<ul>
+  <% @articles.each do |article| %>
+  
+    <li>
+      <div><span class="heading">Title - </span><%=  article.title %></div>
+    </li>  
+      <div> <span class="heading">Body - </span><%= article.body %></div>
+      <div><span class="heading">Author - </span><%= article.user.profile.name %></div>
+    
+       <% if can? :update, article %>
+        <%= link_to "Edit", edit_article_path(article)%> &nbsp
+        <%= link_to "Delete",article,method: :delete,
+        data:{confirm: "are you sure?"} %>
+       <%end%>
+      <br>
+
+      <h4>Comments(<%= article.comments.count %>)</h4>
+      <%= render partial: 'comments/form', locals:{article: article} %>
+      <% article.comments.reverse.each do |comment| %>
+        <%= render partial: 'comments/comment', locals:{article: article,comment: comment} %>
+        <%= render partial: 'replies/form', locals:{article: article,comment: comment} if comment.id.present? %>
+      <% end %>     
+  <% end %>
+</ul>
+
+

@@ -1,0 +1,15 @@
+<% if comment.persisted? %>
+  <p>
+    <%= comment.body%>&nbsp &nbsp By- <%= comment.user.profile.name %><br>
+    <%= link_to "Edit", edit_article_comment_path(article_id: article.id, id: comment.id) if can? :edit, comment %>&nbsp 
+    <%= link_to "Delete",[comment.article, comment],method: :delete,
+        data:{ confirm: "are you sure?" } if can? :destroy, comment %>
+  </p>
+  <p>
+    <% comment.replies.reverse.each do |reply| %>
+        <p><%= reply.body %></p>
+        <%= link_to "Edit", edit_article_comment_reply_path(article_id: article.id, comment_id: comment.id, id:reply.id) if can? :edit, reply %> 
+        <%= link_to "Delete",article_comment_reply_path(article,comment,reply),method: :delete,data:{confirm: "are you sure?"} if can? :destroy, reply %> 
+  <% end %>
+  </p>
+<% end %>

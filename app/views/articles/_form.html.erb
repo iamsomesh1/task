@@ -1,0 +1,26 @@
+<div class="form-actions"><br>
+<h1>Create Post Here</h1>
+<%= form_with model: @article do |form| %>
+  <div>
+    <%= form.label :title %><br>
+    <%= form.text_field :title %>
+    <% article.errors.full_messages_for(:title).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+  <div>
+    <%= form.label :body %><br>
+    <%= form.text_area :body %>
+    <% article.errors.full_messages_for(:body).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+  
+  <br>
+  </div>
+  <div class="form-actions">
+   <%= form.submit class: "btn btn-primary" %> 
+  </div><br>
+
+<% end %>
+

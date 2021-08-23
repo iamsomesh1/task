@@ -1,0 +1,7 @@
+ <h5>Your Profile </h5> </br>
+    <div ><%= image_tag(current_user.profile.image, style:'width:100px; border-radius: 50%;') %></br>
+   <strong>Name : </strong><%= current_user.profile.name %></br>
+   <strong>Date of birth : </strong><%= @profile.dob %></br>
+   <strong>Address :</strong><%= @profile.address %></br>
+<%= link_to "Back", articles_path %>&nbsp 
+<%= link_to "Edit", edit_user_registration_path %>&nbsp 
